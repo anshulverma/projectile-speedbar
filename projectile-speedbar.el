@@ -1,5 +1,6 @@
 ;;; projectile-speedbar --- projectile integration for speedbar
 
+;;
 ;; Author: Anshul Verma <anshul.verma86@gmail.com>
 ;; Maintainer: Anshul Verma <anshul.verma86@gmail.com>
 ;; Copyright (C) 2014, 2009, Anshul Verma, all rights reserved.
