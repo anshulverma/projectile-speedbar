@@ -1,16 +1,11 @@
 ;;; projectile-speedbar --- projectile integration for speedbar
 
-;;
-;; Author: Anshul Verma <anshul.verma86@gmail.com>
+;; Copyright (C) 2014 Anshul Verma
+
 ;; Maintainer: Anshul Verma <anshul.verma86@gmail.com>
-;; Copyright (C) 2014, 2009, Anshul Verma, all rights reserved.
-;; Created: 2014
-;; Version: 0.0.1
-;; Last-Updated: 2014-06-13 03:15:56
-;; URL: http://www.emacswiki.org/emacs/download/projectile-speedbar.el
-;; Keywords: speedbar, sr-speedbar, projectile, projectile-speedbar.el
-;; Compatibility: GNU Emacs 24
-;;
+
+;;; Commentary:
+
 ;; Features that might be required by this library:
 ;;
 ;;  `speedbar' `sr-speedbar' `projectile'
@@ -94,6 +89,7 @@
 
 ;;; TODO
 ;;
+;; * Find a better way to get project root
 ;;
 
 (require 'speedbar)
