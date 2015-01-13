@@ -2,16 +2,13 @@
 
 ;; Copyright (C) 2014 Anshul Verma
 
-;; Maintainer: Anshul Verma <anshul.verma86@gmail.com>
+;; Author: Anshul Verma <anshul.verma86@gmail.com>
+;; URL: https://github.com/anshulverma/projectile-speedbar
+;; Keywords: project, convenience, speedbar, projectile
+;; Version: 0.0.1
+;; Package-Requires: ((projectile "0.11.0"))
 
-;;; Commentary:
-
-;; Features that might be required by this library:
-;;
-;;  `speedbar' `sr-speedbar' `projectile'
-;;
-
-;;; This file is NOT part of GNU Emacs
+;; This file is NOT part of GNU Emacs.
 
 ;;; License
 ;;
@@ -40,9 +37,13 @@
 ;; of that project as well as expand the tree to show the file in the
 ;; project.
 ;;
+;; Features that might be required by this library:
+;;
+;;  `speedbar' `sr-speedbar' `projectile'
+;;
 ;; To invoke this function manually:
 ;;
-;; `nv-speedbar-open-current-buffer-in-tree
+;; `projectile-speedbar-open-current-buffer-in-tree
 ;;
 
 ;;; Installation
@@ -57,11 +58,11 @@
 ;; Sometimes, when I am deep in a project tree, I like to use this shortcut
 ;; to see full context:
 ;;
-;;  (global-set-key (kbd "M-<f2>") 'nv-speedbar-open-current-buffer-in-tree)
+;;  (global-set-key (kbd "M-<f2>") 'projectile-speedbar-open-current-buffer-in-tree)
 ;;
 ;; You can also disable the feature completely:
 ;;
-;;  (setq nv-projectile-speedbar-enable nil)
+;;  (setq projectile-speedbar-projectile-speedbar-enable nil)
 
 ;;; Change log:
 ;;
@@ -76,6 +77,10 @@
 ;; * 27 June 2014
 ;;   * Anshul Verma
 ;;     * add ability to turn projectile speedbar off
+;;
+;; * 13 January 2015
+;;   * Anshul Verma
+;;     * fix headers to comply with standards
 
 ;;; Acknowledgments
 ;;
@@ -92,30 +97,25 @@
 ;; * Find a better way to get project root
 ;;
 
-(require 'speedbar)
-(require 'sr-speedbar)
-
 ;;; Code:
 
-(defgroup nv-speedbar nil
+(require 'speedbar)
+(require 'sr-speedbar)
+(require 'projectile)
+
+(defgroup projectile-speedbar nil
   "Auto refresh speedbar based on projectile."
   :group 'speedbar)
 
-(defcustom nv-projectile-speedbar-enable t
-  "Do not aute-refresh speedbar using `projectile-speedbar'.
+(defcustom projectile-speedbar-enable t
+  "Do not auto-refresh speedbar using `projectile-speedbar'.
 Set to nil to disable projectile speedbar. Default is t."
   :type 'boolean
   :set (lambda (symbol value)
          (set symbol value))
-  :group 'nv-speedbar)
+  :group 'projectile-speedbar)
 
-(defun nv-find-project-root ()
-  (setq nv-current-dir (file-truename buffer-file-name))
-  (while (not (file-exists-p (concat nv-current-dir ".git")))
-    (setq nv-current-dir (file-name-directory (substring nv-current-dir 0 -1))))
-  (concat nv-current-dir ""))
-
-(defun nv-speedbar-project-refresh (root-dir)
+(defun projectile-speedbar-project-refresh (root-dir)
   "Refresh the context of speedbar based on project root"
   (when (and (not (equal root-dir sr-speedbar-last-refresh-dictionary))
              (not (sr-speedbar-window-p)))
@@ -123,40 +123,42 @@ Set to nil to disable projectile speedbar. Default is t."
   (setq default-directory root-dir)
   (speedbar-refresh))
 
-(defun nv-open-current-project-in-speedbar (root-dir)
+(defun projectile-speedbar-open-current-project-in-speedbar (root-dir)
   "Refresh speedbar to show current project in tree"
   (if (not (sr-speedbar-exist-p))
       (sr-speedbar-toggle))
-  (nv-speedbar-project-refresh root-dir))
+  (projectile-speedbar-project-refresh root-dir))
 
-(defun nv-speedbar-expand-line-list (&optional arg)
+(defun projectile-speedbar-expand-line-list (&optional arg)
   (when arg
     (re-search-forward (concat " " (car arg) "$"))
     (speedbar-expand-line (car arg))
     (speedbar-next 1)
-    (nv-speedbar-expand-line-list (cdr arg))))
+    (projectile-speedbar-expand-line-list (cdr arg))))
 
-(defun nv-speedbar-open-current-buffer-in-tree ()
+(defun projectile-speedbar-open-current-buffer-in-tree ()
   (interactive)
-  (let* ((root-dir (nv-find-project-root))
+  (let* ((root-dir (projectile-project-root))
          (original-buffer-file-directory (file-name-directory (buffer-file-name)))
          (relative-buffer-path (car (cdr (split-string original-buffer-file-directory root-dir))))
          (parents (butlast (split-string relative-buffer-path "/")))
          (original-window (get-buffer-window)))
-    (if nv-projectile-speedbar-enable
+    (if projectile-speedbar-enable
         (save-excursion
-          (nv-open-current-project-in-speedbar root-dir)
+          (projectile-speedbar-open-current-project-in-speedbar root-dir)
           (select-window (get-buffer-window speedbar-buffer))
           (beginning-of-buffer)
-          (nv-speedbar-expand-line-list parents)
+          (projectile-speedbar-expand-line-list parents)
           (if (not (eq original-window (get-buffer-window speedbar-buffer)))
               (select-window original-window)
             (other-window 1))))))
 
-(add-hook 'projectile-find-dir-hook 'nv-speedbar-open-current-buffer-in-tree)
-(add-hook 'projectile-find-file-hook 'nv-speedbar-open-current-buffer-in-tree)
-(add-hook 'projectile-cache-projects-find-file-hook 'nv-speedbar-open-current-buffer-in-tree)
-(add-hook 'projectile-cache-files-find-file-hook 'nv-speedbar-open-current-buffer-in-tree)
+(add-hook 'projectile-find-dir-hook 'projectile-speedbar-open-current-buffer-in-tree)
+(add-hook 'projectile-find-file-hook 'projectile-speedbar-open-current-buffer-in-tree)
+(add-hook 'projectile-cache-projects-find-file-hook
+          'projectile-speedbar-open-current-buffer-in-tree)
+(add-hook 'projectile-cache-files-find-file-hook
+          'projectile-speedbar-open-current-buffer-in-tree)
 
 (provide 'projectile-speedbar)
 
