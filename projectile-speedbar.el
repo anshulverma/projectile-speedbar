@@ -1,4 +1,4 @@
-;;; projectile-speedbar --- projectile integration for speedbar
+;;; projectile-speedbar.el --- projectile integration for speedbar
 
 ;; Copyright (C) 2014 Anshul Verma
 
