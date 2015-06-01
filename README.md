@@ -1,6 +1,17 @@
 projectile + speedbar
 ========
 
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc/generate-toc again -->
+**Table of Contents**
+
+- [projectile + speedbar](#projectile--speedbar)
+    - [Summary](#summary)
+    - [Dependencies](#dependencies)
+    - [Installation](#installation)
+    - [Customizations](#customizations)
+
+<!-- markdown-toc end -->
+
 ## Summary
 
 This package sits on top of speedbar and projectile and provides an easy
@@ -10,18 +21,20 @@ With this package when you switch between projects that work with
 projectile, speedbar will automatically show the directly listing of
 that project as well as expand the tree to show the file in the project.
 
-Features that might be required by this library: `speedbar'
-`sr-speedbar' `projectile'
+## Dependencies
 
-To invoke this function manually:
-
-    `projectile-speedbar-open-current-buffer-in-tree
+Features that are be required by this library: `speedbar` `sr-speedbar`
+`projectile`
 
 ## Installation
 
 Copy speedbar-projectile.el to your load-path and add this to ~/.emacs
 
     (require 'projectile-speedbar)
+
+To invoke this function manually:
+
+    `projectile-speedbar-open-current-buffer-in-tree
 
 ## Customizations
 
