@@ -50,7 +50,7 @@
 ;;
 ;; Copy speedbar-projectile.el to your load-path and add this to ~/.emacs
 ;;
-;;  (require 'projectile-emacs)
+;;  (require 'projectile-speedbar)
 ;;
 
 ;;; Customize:
