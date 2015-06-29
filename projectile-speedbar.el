@@ -140,7 +140,7 @@ Set to nil to disable projectile speedbar. Default is t."
   (interactive)
   (let* ((root-dir (projectile-project-root))
          (original-buffer-file-directory (file-name-directory (buffer-file-name)))
-         (relative-buffer-path (car (cdr (split-string original-buffer-file-directory root-dir))))
+         (relative-buffer-path (car (cdr (split-string original-buffer-file-directory (regexp-quote root-dir)))))
          (parents (butlast (split-string relative-buffer-path "/")))
          (original-window (get-buffer-window)))
     (if projectile-speedbar-enable
