@@ -153,6 +153,12 @@ Set to nil to disable projectile speedbar. Default is t."
               (select-window original-window)
             (other-window 1))))))
 
+(defun projectile-speedbar-toggle ()
+  (interactive)
+  (sr-speedbar-toggle)
+  (if (sr-speedbar-exist-p)
+      (projectile-speedbar-open-current-buffer-in-tree)))
+
 (add-hook 'projectile-find-dir-hook 'projectile-speedbar-open-current-buffer-in-tree)
 (add-hook 'projectile-find-file-hook 'projectile-speedbar-open-current-buffer-in-tree)
 (add-hook 'projectile-cache-projects-find-file-hook
