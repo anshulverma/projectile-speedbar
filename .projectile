@@ -1,0 +1,6 @@
+# SCM
+.git/
+
+# Temporary files
+*~
+*#*
