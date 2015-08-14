@@ -46,3 +46,7 @@ to see full context:
 You can also disable the feature completely:
 
     (setq projectile-speedbar-projectile-speedbar-enable nil)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/anshulverma/projectile-speedbar/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
