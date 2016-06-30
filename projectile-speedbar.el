@@ -6,7 +6,7 @@
 ;; URL: https://github.com/anshulverma/projectile-speedbar
 ;; Keywords: project, convenience, speedbar, projectile
 ;; Version: 0.0.1
-;; Package-Requires: ((projectile "0.11.0"))
+;; Package-Requires: ((projectile "0.11.0") (sr-speedbar))
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -37,7 +37,7 @@
 ;; of that project as well as expand the tree to show the file in the
 ;; project.
 ;;
-;; Features that might be required by this library:
+;; Features that are required by this library:
 ;;
 ;;  `speedbar' `sr-speedbar' `projectile'
 ;;
