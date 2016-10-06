@@ -18,12 +18,12 @@ This package sits on top of speedbar and projectile and provides an easy
 to use and useful integration between the two.
 
 With this package when you switch between projects that work with
-projectile, speedbar will automatically show the directly listing of
+projectile, speedbar will automatically show the directory listing of
 that project as well as expand the tree to show the file in the project.
 
 ## Dependencies
 
-Features that are be required by this library: `speedbar` `sr-speedbar`
+Features that are required by this library: `speedbar` `sr-speedbar`
 `projectile`
 
 ## Installation
