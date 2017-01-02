@@ -1,17 +1,6 @@
 projectile + speedbar
 ========
 
-<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc/generate-toc again -->
-**Table of Contents**
-
-- [projectile + speedbar](#projectile--speedbar)
-    - [Summary](#summary)
-    - [Dependencies](#dependencies)
-    - [Installation](#installation)
-    - [Customizations](#customizations)
-
-<!-- markdown-toc end -->
-
 ## Summary
 
 This package sits on top of speedbar and projectile and provides an easy
@@ -27,6 +16,24 @@ Features that are required by this library: `speedbar` `sr-speedbar`
 `projectile`
 
 ## Installation
+
+### Melpa
+
+This package is available to install via Melpa. First, make sure the
+Melpa package archive is available.
+
+``` lisp
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+```
+
+Then, install this package:
+
+``` lisp
+(package-install 'projectile-speedbar)
+```
+
+### Manual
 
 Copy speedbar-projectile.el to your load-path and add this to ~/.emacs
 
