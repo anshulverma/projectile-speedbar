@@ -136,6 +136,7 @@ Set to nil to disable projectile speedbar. Default is t."
     (speedbar-next 1)
     (projectile-speedbar-expand-line-list (cdr arg))))
 
+;;;###autoload
 (defun projectile-speedbar-open-current-buffer-in-tree ()
   (interactive)
   (let* ((root-dir (projectile-project-root))
@@ -155,6 +156,7 @@ Set to nil to disable projectile speedbar. Default is t."
               (select-window original-window)
             (other-window 1))))))
 
+;;;###autoload
 (defun projectile-speedbar-toggle ()
   (interactive)
   (sr-speedbar-toggle)
