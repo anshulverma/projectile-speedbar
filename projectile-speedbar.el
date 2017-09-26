@@ -120,6 +120,7 @@ Set to nil to disable projectile speedbar. Default is t."
   (when (and (not (equal root-dir sr-speedbar-last-refresh-dictionary))
              (not (sr-speedbar-window-p)))
     (setq sr-speedbar-last-refresh-dictionary root-dir))
+  (sr-speedbar-select-window)
   (setq default-directory root-dir)
   (speedbar-refresh))
 
